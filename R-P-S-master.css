@@ -1,0 +1,806 @@
+* {
+  Marker: none;
+}
+
+:root {
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+  --radial-gradient: hsl(214, 47%, 23%);
+  --radial-gradient-two: hsl(237, 49%, 15%);
+  --scissors-gradient: hsl(40, 84%, 53%);
+  --scissors-gradient-shadow: hsl(39, 89%, 49%);
+  --paper-gradient: hsl(230, 89%, 65%);
+  --paper-gradient-shadow: hsl(230, 89%, 62%);
+  --rock-gradient: hsl(349, 70%, 56%);
+  --rock-gradient-shadow: hsl(349, 71%, 52%);
+  --lizard-gradient: hsl(261, 72%, 63%);
+  --lizard-gradient-shadow: hsl(261, 73%, 60%);
+  --spock-gradient: hsl(189, 58%, 57%);
+  --spock-gradient-shadow: hsl(189, 59%, 53%);
+}
+
+body {
+  background: linear-gradient(hsl(214deg, 47%, 23%), hsl(237deg, 49%, 15%));
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+}
+
+.overlayer {
+  z-index: 10;
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.show {
+  display: flex;
+}
+
+.rules {
+  z-index: 11;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 380px;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  color: hsl(217deg, 16%, 45%);
+}
+.rules > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+header {
+  width: 60%;
+  height: 150px;
+  margin-top: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+header .scoreBoard {
+  background-color: white;
+  border-radius: 10px;
+  width: 120px;
+  text-align: center;
+  font-weight: 600;
+  color: hsl(229deg, 64%, 46%);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+header .scoreBoard .score {
+  font-size: 64px;
+}
+
+@media (max-width: 376px) {
+  header {
+    width: 350px;
+  }
+}
+.text {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: 32px;
+}
+
+@media (max-width: 376px) {
+  .text {
+    width: 350px;
+    font-size: 15px;
+  }
+}
+main {
+  position: relative;
+  margin-top: 80px;
+  background-image: url(/rock-paper-scissors-master/images/bg-pentagon.svg);
+  width: 329px;
+  height: 313px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main div {
+  margin-top: -30px;
+  cursor: pointer;
+}
+main div:nth-child(1) {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid hsl(261deg, 72%, 63%);
+  translate: 70% -32%;
+}
+main div:nth-child(2) {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid hsl(230deg, 89%, 65%);
+  translate: 174% 33%;
+}
+main div:nth-child(3) {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid hsl(349deg, 70%, 56%);
+  translate: 128% 153%;
+}
+main div:nth-child(4) {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid hsl(40deg, 84%, 53%);
+  translate: 0% 153%;
+}
+main div:nth-child(5) {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid hsl(189deg, 58%, 57%);
+  translate: -37% 33%;
+}
+main div:hover {
+  box-shadow: 0px 0px 40px 10px rgba(255, 255, 255, 0.5);
+  scale: 1.1;
+}
+
+@media (max-width: 376px) {
+  main {
+    top: -66px;
+  }
+  main div {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    left: 14%;
+    margin-top: 46px;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+  }
+}
+.lizard {
+  background-image: url(./images/icon-lizard.svg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid var(--lizard-gradient);
+}
+
+.paper {
+  background-image: url(./images/icon-paper.svg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid var(--paper-gradient);
+}
+
+.rock {
+  background-image: url(./images/icon-rock.svg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid var(--rock-gradient);
+}
+
+.scissors {
+  background-image: url(./images/icon-scissors.svg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid var(--scissors-gradient);
+}
+
+.spock {
+  background-image: url(./images/icon-spock.svg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+  border: 15px solid var(--spock-gradient);
+}
+
+@media (max-width: 376px) {
+  .lizard {
+    background-image: url(./images/icon-lizard.svg);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid var(--lizard-gradient);
+  }
+  .paper {
+    background-image: url(./images/icon-paper.svg);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid var(--paper-gradient);
+  }
+  .rock {
+    background-image: url(./images/icon-rock.svg);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid var(--rock-gradient);
+  }
+  .scissors {
+    background-image: url(./images/icon-scissors.svg);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid var(--scissors-gradient);
+  }
+  .spock {
+    background-image: url(./images/icon-spock.svg);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid var(--spock-gradient);
+  }
+}
+.veil {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  z-index: 999;
+  scale: 1.7;
+  translate: -60% 19%;
+  visibility: hidden;
+}
+
+@media (max-width: 376px) {
+  .veil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    left: 82.5px;
+    top: 26.5px;
+    scale: 1.5;
+  }
+}
+.theHouseChose {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  translate: 115% 268%;
+  scale: 1.7;
+  background-color: rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  -webkit-animation: chosing infinite 1s;
+          animation: chosing infinite 1s;
+}
+
+@media (max-width: 376px) {
+  .theHouseChose {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 27px;
+    left: 102px;
+    scale: 1.5;
+  }
+}
+.ruleBtn {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 13;
+  position: fixed;
+  right: 50px;
+  bottom: 40px;
+  color: inherit;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+
+main div.selected {
+  translate: -60% 40%;
+  scale: 1.7;
+  transition: translate 2s, scale 2s;
+}
+
+@media (max-width: 376px) {
+  main div.selected {
+    scale: 1.5;
+    left: 25%;
+    margin-top: 6px;
+  }
+}
+.timer {
+  display: flex;
+  place-content: center;
+  font-size: 50px;
+  z-index: 3;
+  margin-top: -73px;
+}
+
+.result {
+  display: flex;
+  place-content: center;
+  font-size: 50px;
+  z-index: 3;
+  margin-top: 15px;
+}
+
+.playAgain {
+  font-size: 33px;
+  width: 200px;
+  height: 50px;
+  color: hsl(229deg, 25%, 31%);
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  margin-bottom: 110px;
+  place-content: center;
+  cursor: pointer;
+}
+
+@-webkit-keyframes chosing {
+  0% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(189deg, 58%, 57%);
+    background-image: url("/rock-paper-scissors-master/images/icon-spock.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  25% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(261deg, 72%, 63%);
+    background-image: url("/rock-paper-scissors-master/images/icon-lizard.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  50% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(230deg, 89%, 65%);
+    background-image: url("/rock-paper-scissors-master/images/icon-paper.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  75% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(349deg, 70%, 56%);
+    background-image: url("/rock-paper-scissors-master/images/icon-rock.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  100% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(40deg, 84%, 53%);
+    background-image: url("/rock-paper-scissors-master/images/icon-scissors.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+}
+
+@keyframes chosing {
+  0% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(189deg, 58%, 57%);
+    background-image: url("/rock-paper-scissors-master/images/icon-spock.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  25% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(261deg, 72%, 63%);
+    background-image: url("/rock-paper-scissors-master/images/icon-lizard.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  50% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(230deg, 89%, 65%);
+    background-image: url("/rock-paper-scissors-master/images/icon-paper.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  75% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(349deg, 70%, 56%);
+    background-image: url("/rock-paper-scissors-master/images/icon-rock.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+  100% {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+    position: absolute;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+    border: 15px solid hsl(40deg, 84%, 53%);
+    background-image: url("/rock-paper-scissors-master/images/icon-scissors.svg");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+  }
+}
+@media (max-width: 376px) {
+  @-webkit-keyframes chosing {
+    0% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(189deg, 58%, 57%);
+      background-image: url("/rock-paper-scissors-master/images/icon-spock.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    25% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(261deg, 72%, 63%);
+      background-image: url("/rock-paper-scissors-master/images/icon-lizard.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    50% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(230deg, 89%, 65%);
+      background-image: url("/rock-paper-scissors-master/images/icon-paper.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    75% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(349deg, 70%, 56%);
+      background-image: url("/rock-paper-scissors-master/images/icon-rock.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    100% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(40deg, 84%, 53%);
+      background-image: url("/rock-paper-scissors-master/images/icon-scissors.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+  }
+  @keyframes chosing {
+    0% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(189deg, 58%, 57%);
+      background-image: url("/rock-paper-scissors-master/images/icon-spock.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    25% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(261deg, 72%, 63%);
+      background-image: url("/rock-paper-scissors-master/images/icon-lizard.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    50% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(230deg, 89%, 65%);
+      background-image: url("/rock-paper-scissors-master/images/icon-paper.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    75% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(349deg, 70%, 56%);
+      background-image: url("/rock-paper-scissors-master/images/icon-rock.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+    100% {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: white;
+      display: grid;
+      place-content: center;
+      position: absolute;
+      background-repeat: no-repeat;
+      box-shadow: inset 0px 3px 8px 3px hsl(217deg, 16%, 45%);
+      border: 15px solid hsl(40deg, 84%, 53%);
+      background-image: url("/rock-paper-scissors-master/images/icon-scissors.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 30px;
+      background-position: center center;
+    }
+  }
+}/*# sourceMappingURL=R-P-S-master.css.map */

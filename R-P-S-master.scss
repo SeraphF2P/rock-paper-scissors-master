@@ -1,0 +1,345 @@
+@use './function' as function;
+
+* {
+	Marker:none;
+}
+
+
+$dark-text: hsl(229, 25%, 31%);
+$score-text: hsl(229, 64%, 46%);
+$header-outline: hsl(217, 16%, 45%);
+$radial-gradient: hsl(214, 47%, 23%);
+$radial-gradient-two: hsl(237, 49%, 15%);
+
+$scissors-gradient: hsl(40, 84%, 53%);
+$scissors-gradient-shadow: hsl(39, 89%, 49%);
+$paper-gradient: hsl(230, 89%, 65%);
+$paper-gradient-shadow: hsl(230, 89%, 62%);
+$rock-gradient: hsl(349, 70%, 56%);
+$rock-gradient-shadow: hsl(349, 71%, 52%);
+$lizard-gradient: hsl(261, 72%, 63%);
+$lizard-gradient-shadow: hsl(261, 73%, 60%);
+$spock-gradient: hsl(189, 58%, 57%);
+$spock-gradient-shadow: hsl(189, 59%, 53%);
+:root{
+	--dark-text: hsl(229, 25%, 31%);
+--score-text: hsl(229, 64%, 46%);
+--header-outline: hsl(217, 16%, 45%);
+--radial-gradient: hsl(214, 47%, 23%);
+--radial-gradient-two: hsl(237, 49%, 15%);
+
+--scissors-gradient: hsl(40, 84%, 53%);
+--scissors-gradient-shadow: hsl(39, 89%, 49%);
+--paper-gradient: hsl(230, 89%, 65%);
+--paper-gradient-shadow: hsl(230, 89%, 62%);
+--rock-gradient: hsl(349, 70%, 56%);
+--rock-gradient-shadow: hsl(349, 71%, 52%);
+--lizard-gradient: hsl(261, 72%, 63%);
+--lizard-gradient-shadow: hsl(261, 73%, 60%);
+--spock-gradient: hsl(189, 58%, 57%);
+--spock-gradient-shadow: hsl(189, 59%, 53%);
+}
+
+
+  body {
+	background: linear-gradient($radial-gradient,$radial-gradient-two);
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Open Sans", sans-serif;
+    color: white;
+}
+
+.overlayer {
+    z-index: 10;
+    display: none;
+    position: absolute;
+	width: 100%;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(0, 0, 0, 20%);
+}
+.show{
+    display: flex;
+}
+.rules {
+    z-index: 11;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+	width: 380px;
+	height: 400px;
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	color: $header-outline;
+	> div {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+
+header {
+	width: 60%;
+	height: 150px;
+	margin-top: 40px;
+	@include function.boxing();
+	   .scoreBoard {
+		background-color: white;
+		border-radius: 10px;
+		width: 120px;
+		text-align: center;
+		font-weight: 600;
+		color: $score-text;
+		padding: 10px;
+		display: flex;
+	    flex-direction: column;
+		            .score{
+		                   font-size: 64px;
+	                       }
+	                }
+	
+        }
+		@media (max-width: 376px) {
+			header{
+				width: 350px;
+			}
+		  }
+
+.text{
+	width: 60%;
+	display: flex;
+	justify-content: space-around;
+	font-weight: 700;
+	font-size: 40px;
+	margin-top: 32px;
+}
+@media (max-width: 376px) {
+	.text{
+		width: 350px;
+		font-size: 15px;
+	}
+}
+
+main {
+	position: relative;
+	margin-top: 80px;
+	background-image: url(/rock-paper-scissors-master/images/bg-pentagon.svg);
+	width: 329px;
+	height: 313px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	div {
+		margin-top: -30px;
+        cursor: pointer;
+		&:nth-child(1){
+            @include function.circle(140px);
+          @include function.shadowing($lizard-gradient);
+          translate: 70% -32%;
+		} 
+		&:nth-child(2) {
+            @include function.circle(140px);
+          @include function.shadowing($paper-gradient);
+          translate: 174% 33%;
+		}
+		&:nth-child(3) {
+            @include function.circle(140px);
+          @include function.shadowing($rock-gradient);
+          translate: 128% 153%;
+		}
+		&:nth-child(4) {
+            @include function.circle(140px);
+          @include function.shadowing($scissors-gradient);
+          translate: 0% 153%;
+		}
+		&:nth-child(5) {
+            @include function.circle(140px);
+          @include function.shadowing($spock-gradient);
+          translate: -37% 33%;
+		}
+        &:hover{
+            box-shadow: 0px 0px 40px 10px rgba(255, 255, 255, .5);
+            scale: 1.1;
+        }
+	}
+}
+@media (max-width: 376px) {
+	main{
+		top: -66px;
+		div{
+			@include  function.circle(100px !important);
+			left: 14%;
+			margin-top: 46px;
+			background-color: white;
+			display: grid;
+			place-content: center;
+			position: absolute;
+			background-repeat: no-repeat;
+		}
+	}
+  }
+
+$col : lizard,paper,rock,scissors,spock;
+$coll : $lizard-gradient,$paper-gradient,$rock-gradient,$scissors-gradient,$spock-gradient;
+@each $i in $col {
+	.#{$i}{
+	background-image: url(./images/icon-#{$i}.svg);
+	@include function.circle(140px);
+	background-position: center center;
+	@include function.shadowing(var(--#{$i}-gradient));
+	}
+}
+@media (max-width: 376px) {
+	$col : lizard,paper,rock,scissors,spock;
+$coll : $lizard-gradient,$paper-gradient,$rock-gradient,$scissors-gradient,$spock-gradient;
+@each $i in $col {
+	.#{$i}{
+	background-image: url(./images/icon-#{$i}.svg);
+	@include function.circle(100px);
+	background-position: center center;
+	@include function.shadowing(var(--#{$i}-gradient));
+	 
+	}
+}
+  }
+
+.veil{
+	@include function.circle(140px);
+	background-color: transparent;
+	z-index: 999;
+	scale: 1.7;
+	translate: -60% 19%;
+	visibility: hidden
+}
+@media (max-width: 376px) {
+	.veil{
+		@include function.circle(100px);
+		background-color: transparent;
+		left: 82.5px;
+		top: 26.5px;
+		scale: 1.5;
+	}
+}
+
+
+
+.theHouseChose{
+	@include function.circle(140px);
+	translate: 115% 268%;
+    scale: 1.7;
+	background-color: rgb(0, 0, 0,40%);
+	visibility: hidden;
+	animation-play-state: running;
+	animation: chosing infinite 1s ;
+}
+@media (max-width: 376px) {
+	.theHouseChose{
+		@include function.circle(100px !important);
+		top: 27px;
+        left: 102px;
+		scale: 1.5;
+	}
+}
+.ruleBtn{
+    @include function.boxing();
+    z-index: 13;
+    position: fixed;
+    right: 50px;
+    bottom: 40px;
+    color: inherit;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+main div.selected{
+	translate : -60% 40% ;
+	scale : 1.7 ;
+	transition : translate 2s,scale 2s;
+	
+}
+@media (max-width: 376px) {
+	main div.selected{
+		scale : 1.5 ;
+		left: 25%;
+margin-top: 6px;
+	}
+}
+
+.timer{
+	display: flex;
+	place-content: center;
+	font-size: 50px;
+	z-index: 3;
+	margin-top: -73px;
+
+}
+.result{
+	display: flex;
+	place-content: center;
+	font-size: 50px;
+	z-index: 3;
+	margin-top: 15px;
+
+}
+
+.playAgain{
+	font-size: 33px;
+	width: 200px;
+	height: 50px;
+	color: hsl(229deg, 25%, 31%);
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	margin-bottom: 110px;
+	place-content: center;
+	cursor: pointer;
+}
+
+@keyframes chosing {
+	0%{
+		@include function.loading($spock-gradient,'spock');
+	}
+	25%{
+		@include function.loading($lizard-gradient,'lizard');
+	}
+	50%{
+		@include function.loading($paper-gradient,'paper');
+	}
+	75%{
+		@include function.loading($rock-gradient,'rock');
+	}
+	100%{
+	
+		@include function.loading($scissors-gradient,'scissors');
+	}
+}
+@media (max-width: 376px) {
+	@keyframes chosing {
+		0%{
+			@include function.loading($spock-gradient,'spock');
+			background-position: center center;
+		}
+		25%{
+			@include function.loading($lizard-gradient,'lizard');
+			background-position: center center;
+		}
+		50%{
+			@include function.loading($paper-gradient,'paper');
+			background-position: center center;
+		}
+		75%{
+			@include function.loading($rock-gradient,'rock');
+			background-position: center center;
+		}
+		100%{
+		
+			@include function.loading($scissors-gradient,'scissors');
+			background-position: center center;
+		}
+	}
+
+}
+  
